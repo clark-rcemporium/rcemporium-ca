@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RC Emporium Technologies Inc. — Cleantech hardware innovation and commercialization. Discover government funding, procurement opportunities, and patent-based business ventures.">
+    <meta name="keywords" content="cleantech, hardware, patents, government funding, procurement, business opportunities">
+    <meta property="og:title" content="RC Emporium Technologies Inc.">
+    <meta property="og:description" content="Cleantech hardware innovation and commercialization platform">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rcemporium.ca">
+    <title>RC Emporium Technologies Inc. — Cleantech Hardware Innovation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #2C3957;
+            --gold: #CBB26A;
+            --light-gray: #F5F5F5;
+            --white: #FFFFFF;
+            --text: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--navy);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, #1a2438 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #e0e0e0;
+        }
+
+        .hero .accent {
+            color: var(--gold);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        .btn-primary:hover {
+            background: #d4c07a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(203, 178, 106, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .about .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--navy);
+        }
+
+        .about p {
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Ventures Section */
+        .ventures {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+
+        .ventures .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .ventures h2 {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--navy);
+            text-align: center;
+        }
+
+        .venture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .venture-card {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s;
+        }
+
+        .venture-card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+        }
+
+        .venture-card h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .venture-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .venture-card .status {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            background: var(--gold);
+            color: var(--navy);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .venture-card a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .venture-card a:hover {
+            color: var(--navy);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 2rem;
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .contact .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item h3 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            color: #e0e0e0;
+        }
+
+        .contact-item a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a2438;
+            color: #999;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* Container utility */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">RC Emporium</a>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#ventures">Ventures</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>RC Emporium Technologies Inc.</h1>
+            <p>Cleantech hardware innovation, government procurement intelligence, and patent-based business opportunities</p>
+            <div class="cta-buttons">
+                <a href="https://rcbidintel.one" class="btn btn-primary">Found Money Scan</a>
+                <a href="#ventures" class="btn btn-secondary">Explore Ventures</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>About RC Emporium</h2>
+            <p>
+                RC Emporium Technologies Inc. is a cleantech hardware startup focused on identifying and commercializing high-impact business opportunities. We combine patent intelligence, government procurement data, and AI-powered analysis to help businesses discover untapped revenue streams.
+            </p>
+            <p>
+                Based in Winnipeg, Manitoba, we specialize in:
+            </p>
+            <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                <li><strong>Patent-Based Ventures:</strong> Identifying expired patents with commercial potential</li>
+                <li><strong>Government Procurement:</strong> Discovering government bids and funding opportunities</li>
+                <li><strong>Cleantech Innovation:</strong> Developing hardware solutions for energy efficiency and sustainability</li>
+                <li><strong>Business Intelligence:</strong> AI-powered analysis and market research</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Ventures Section -->
+    <section class="ventures" id="ventures">
+        <div class="container">
+            <h2>Active Ventures</h2>
+            <div class="venture-grid">
+                <!-- RCBID & FUND -->
+                <div class="venture-card">
+                    <span class="status">ACTIVE</span>
+                    <h3>RCBID & FUND</h3>
+                    <p>
+                        AI-powered government procurement intelligence platform. Discover government bids, evaluate opportunities with AI analysis, and generate proposal drafts.
+                    </p>
+                    <p><strong>Target:</strong> Government contractors, small businesses</p>
+                    <p><strong>Revenue Model:</strong> Subscription + One-time Found Money Scan ($47 CAD)</p>
+                    <a href="https://rcbidintel.one">Access Platform →</a>
+                </div>
+
+                <!-- Patent Venture Engine -->
+                <div class="venture-card">
+                    <span class="status">ACTIVE</span>
+                    <h3>Patent Venture Engine</h3>
+                    <p>
+                        Autonomous system that identifies trending product categories, searches for expired patents, and generates manufacturing-ready business opportunities.
+                    </p>
+                    <p><strong>Target:</strong> Entrepreneurs, manufacturers, product developers</p>
+                    <p><strong>Revenue Model:</strong> SaaS subscription (4 tiers)</p>
+                    <a href="https://patentvent-yzew8qpq.manus.space">Access Platform →</a>
+                </div>
+
+                <!-- VEPKAR -->
+                <div class="venture-card">
+                    <span class="status">DEVELOPMENT</span>
+                    <h3>VEPKAR</h3>
+                    <p>
+                        Duct-integrated HVAC airflow energy recovery module. Captures waste heat from HVAC systems to reduce energy consumption and operating costs.
+                    </p>
+                    <p><strong>Target:</strong> HVAC contractors, commercial buildings</p>
+                    <p><strong>Stage:</strong> Prototype development and pilot deployment</p>
+                    <a href="mailto:info@rcemporium.ca">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p><a href="mailto:info@rcemporium.ca">info@rcemporium.ca</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>Phone</h3>
+                    <p><a href="tel:+12046888963">+1 (204) 688-8963</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>Location</h3>
+                    <p>Winnipeg, Manitoba, Canada</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 RC Emporium Technologies Inc. All rights reserved.</p>
+            <p>
+                <a href="#privacy">Privacy Policy</a> | 
+                <a href="#terms">Terms of Service</a> | 
+                <a href="#accessibility">Accessibility</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
