@@ -26,7 +26,7 @@ This is the professional corporate headquarters website for RC Emporium Technolo
 
 ## Venture Links
 
-- **RCBID & FUND:** https://rcbidintel.one
+- **RCBID & FUND:** Canonical corporate path: `/rcbid/`, which redirects to https://rcbidintel.one
 - **Patent Venture Engine:** https://patentvent-yzew8qpq.manus.space
 - **VEPKAR:** Contact for information
 
