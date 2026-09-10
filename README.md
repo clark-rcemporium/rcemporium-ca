@@ -18,12 +18,12 @@ The homepage prioritizes the current revenue-first RCBID / FUND AI offer while k
 - **$97 CAD — Funding + Bid Readiness Audit**
 - **$297 CAD — Opportunity Action Report**
 
-Canonical RCBID route: `/rcbid/` → https://rcbidintel.one
+Canonical RCBID route: `/rcbid/` → `https://rcbidintel.one/found-money-scan` with referral campaign parameters
 
 ## Website Structure
 
 - **Hero:** Revenue-first company positioning + $47 Found Money Scan CTA
-- **Offer Ladder:** $47 / $97 / $297 progression
+- **Offer Ladder:** $47 entry scan; $97 / $297 shown as post-scan progression rather than competing cold CTAs
 - **Company:** Capital-efficient operating strategy
 - **Portfolio:** RCBID & FUND, AI/venture infrastructure, longer-horizon clean-tech engineering
 - **Contact:** RC Emporium Technologies Inc., Winnipeg, Manitoba

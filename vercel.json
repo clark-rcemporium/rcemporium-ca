@@ -2,7 +2,12 @@
   "redirects": [
     {
       "source": "/rcbid",
-      "destination": "https://rcbidintel.one",
+      "destination": "https://rcbidintel.one/found-money-scan?utm_source=rcemporium.ca&utm_medium=referral&utm_campaign=found_money_scan",
+      "permanent": false
+    },
+    {
+      "source": "/rcbid/",
+      "destination": "https://rcbidintel.one/found-money-scan?utm_source=rcemporium.ca&utm_medium=referral&utm_campaign=found_money_scan",
       "permanent": false
     }
   ],
