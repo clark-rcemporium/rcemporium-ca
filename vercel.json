@@ -1,11 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/rcbid",
-      "destination": "https://rcbidintel.one",
-      "permanent": false
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
