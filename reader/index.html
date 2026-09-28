@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="description" content="RC Reader — paste text or upload a document and listen instead of reading it." />
+  <title>RC Reader — Listen instead of reading</title>
+  <style>
+    :root{color-scheme:dark;--bg:#080b14;--panel:#111827;--panel2:#172033;--text:#f8fafc;--muted:#9ca3af;--line:#293247;--accent:#60a5fa;--accent2:#3b82f6;--danger:#ef4444;--ok:#22c55e}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at top,#172554 0,#0b1020 28%,var(--bg) 62%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+    .wrap{width:min(900px,100%);margin:0 auto;padding:calc(18px + env(safe-area-inset-top)) 16px calc(32px + env(safe-area-inset-bottom))}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+    .brand{font-weight:800;letter-spacing:-.02em;font-size:20px}.brand span{color:var(--accent)}
+    .tag{font-size:12px;color:var(--muted);text-align:right}
+    .hero{margin:18px 0 16px}.hero h1{font-size:clamp(28px,7vw,48px);line-height:1.02;margin:0 0 10px;letter-spacing:-.045em}.hero p{margin:0;color:#cbd5e1;font-size:16px;line-height:1.5;max-width:700px}
+    .card{background:rgba(17,24,39,.88);border:1px solid rgba(148,163,184,.18);border-radius:22px;box-shadow:0 18px 60px rgba(0,0,0,.28);overflow:hidden;backdrop-filter:blur(14px)}
+    .editor{padding:14px}
+    textarea{width:100%;min-height:230px;resize:vertical;border:0;outline:0;border-radius:15px;padding:16px;background:#0b1220;color:var(--text);font:inherit;font-size:17px;line-height:1.58;border:1px solid var(--line)}
+    textarea::placeholder{color:#6b7280}
+    .inputbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;align-items:center}
+    button,.fileLabel,select,input[type=range]{font:inherit}
+    button,.fileLabel{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:12px;min-height:44px;padding:9px 13px;cursor:pointer;font-weight:650;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+    button:hover,.fileLabel:hover{border-color:#475569}.fileLabel input{display:none}
+    .clear{margin-left:auto;color:#cbd5e1}
+    .status{margin:12px 2px 0;color:var(--muted);font-size:13px;min-height:20px}.status.bad{color:#fca5a5}.status.good{color:#86efac}
+    .player{padding:14px;border-top:1px solid var(--line);background:rgba(8,11,20,.56)}
+    .playRow{display:grid;grid-template-columns:1fr auto auto;gap:9px;align-items:center}
+    .play{min-height:58px;background:linear-gradient(180deg,#60a5fa,#3b82f6);color:#071426;border:0;font-size:20px;border-radius:15px;font-weight:900;box-shadow:0 10px 30px rgba(59,130,246,.24)}
+    .pause,.stop{min-width:58px;min-height:58px;border-radius:15px;font-size:18px}
+    .controls{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+    .control{background:#0b1220;border:1px solid var(--line);padding:12px;border-radius:14px}.label{display:flex;justify-content:space-between;gap:10px;color:#cbd5e1;font-size:13px;margin-bottom:8px}
+    select{width:100%;min-height:42px;background:#111827;color:var(--text);border:1px solid #334155;border-radius:10px;padding:8px}
+    input[type=range]{width:100%}
+    .progressWrap{margin-top:14px}.progressMeta{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:6px}.track{height:9px;border-radius:99px;background:#1e293b;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#3b82f6,#60a5fa);transition:width .15s linear}
+    .restart{margin-top:12px;width:100%}
+    .foot{margin:16px 4px 0;color:#94a3b8;font-size:12px;line-height:1.5}
+    .hidden{display:none!important}
+    @media(max-width:600px){.wrap{padding-left:12px;padding-right:12px}.hero{margin-top:10px}.hero h1{font-size:34px}.hero p{font-size:15px}textarea{min-height:190px;font-size:16px}.controls{grid-template-columns:1fr}.playRow{grid-template-columns:1fr 56px 56px}.clear{margin-left:0}.tag{display:none}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div class="brand">RC <span>Reader</span></div>
+      <div class="tag">RC Emporium Technologies Inc.</div>
+    </header>
+
+    <section class="hero">
+      <h1>Use your ears.<br>Keep your eyes on the work.</h1>
+      <p>Paste any message or text, or open a document, then press <strong>Play</strong>. No sign-in. No summary step.</p>
+    </section>
+
+    <section class="card" aria-label="Text to speech reader">
+      <div class="editor">
+        <textarea id="text" spellcheck="true" placeholder="Paste a message, email, article, instructions, notes, or anything else you want read aloud…"></textarea>
+        <div class="inputbar">
+          <button id="pasteBtn" type="button">Paste</button>
+          <label class="fileLabel">Open file<input id="file" type="file" accept=".txt,.md,.csv,.pdf,.docx,text/plain,text/markdown,text/csv,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" /></label>
+          <button id="sampleBtn" type="button">Try sample</button>
+          <button id="clearBtn" class="clear" type="button">Clear</button>
+        </div>
+        <div id="status" class="status" role="status" aria-live="polite">Ready.</div>
+      </div>
+
+      <div class="player">
+        <div class="playRow">
+          <button id="playBtn" class="play" type="button">▶ Play</button>
+          <button id="pauseBtn" class="pause" type="button" aria-label="Pause or resume">⏸</button>
+          <button id="stopBtn" class="stop" type="button" aria-label="Stop">■</button>
+        </div>
+
+        <div class="controls">
+          <div class="control">
+            <div class="label"><span>Voice</span><span id="voiceHint">Device voices</span></div>
+            <select id="voice"></select>
+          </div>
+          <div class="control">
+            <div class="label"><span>Speed</span><strong id="speedValue">1.0×</strong></div>
+            <input id="speed" type="range" min="0.6" max="2" step="0.1" value="1" />
+          </div>
+        </div>
+
+        <div class="progressWrap">
+          <div class="progressMeta"><span id="progressLabel">Not started</span><span id="percent">0%</span></div>
+          <div class="track" aria-hidden="true"><div id="fill" class="fill"></div></div>
+        </div>
+        <button id="restartBtn" class="restart" type="button">↺ Restart from beginning</button>
+      </div>
+    </section>
+
+    <p class="foot">Supports TXT, Markdown, CSV, text-based PDF and DOCX up to 10 MB. Scanned/image-only PDFs need OCR and are not supported yet. On iPhone, browser speech can pause if Safari is fully backgrounded or the phone is locked; keep the reader active for the most reliable playback.</p>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://unpkg.com/mammoth@1.8.0/mammoth.browser.min.js"></script>
+  <script>
+  (() => {
+    'use strict';
+    const $ = (id) => document.getElementById(id);
+    const textEl = $('text'), fileEl = $('file'), statusEl = $('status');
+    const playBtn = $('playBtn'), pauseBtn = $('pauseBtn'), stopBtn = $('stopBtn'), restartBtn = $('restartBtn');
+    const voiceEl = $('voice'), speedEl = $('speed'), speedValueEl = $('speedValue');
+    const fillEl = $('fill'), percentEl = $('percent'), progressLabelEl = $('progressLabel');
+    const synth = window.speechSynthesis;
+    let voices = [], chunks = [], chunkIndex = 0, speaking = false, paused = false, sessionToken = 0;
+
+    if (window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    function setStatus(message, kind='') {
+      statusEl.textContent = message;
+      statusEl.className = 'status' + (kind ? ' ' + kind : '');
+    }
+
+    function updateProgress(done = 0) {
+      const total = Math.max(chunks.length, 1);
+      const pct = speaking || done ? Math.min(100, Math.round((done / total) * 100)) : 0;
+      fillEl.style.width = pct + '%';
+      percentEl.textContent = pct + '%';
+      progressLabelEl.textContent = speaking ? `Reading ${Math.min(chunkIndex + 1, chunks.length)} of ${chunks.length}` : (pct === 100 ? 'Finished' : 'Not started');
+    }
+
+    function loadVoices() {
+      if (!synth) return;
+      const list = synth.getVoices() || [];
+      voices = list;
+      const previous = voiceEl.value;
+      voiceEl.innerHTML = '';
+      if (!voices.length) {
+        const o = document.createElement('option'); o.textContent = 'Default device voice'; o.value = ''; voiceEl.appendChild(o); return;
+      }
+      const sorted = [...voices].sort((a,b) => (b.default - a.default) || a.lang.localeCompare(b.lang) || a.name.localeCompare(b.name));
+      sorted.forEach(v => {
+        const o = document.createElement('option');
+        o.value = String(voices.indexOf(v));
+        o.textContent = `${v.name} — ${v.lang}${v.default ? ' (default)' : ''}`;
+        voiceEl.appendChild(o);
+      });
+      if (previous && [...voiceEl.options].some(o => o.value === previous)) voiceEl.value = previous;
+      else {
+        const english = sorted.find(v => /^en(-|_)/i.test(v.lang));
+        if (english) voiceEl.value = String(voices.indexOf(english));
+      }
+    }
+
+    function splitText(input) {
+      const cleaned = input.replace(/\r\n/g,'\n').replace(/[ \t]+\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim();
+      if (!cleaned) return [];
+      const sentences = cleaned.match(/[^.!?\n]+[.!?]+(?:\s|$)|[^\n]+(?:\n|$)/g) || [cleaned];
+      const out = [];
+      let current = '';
+      for (const raw of sentences) {
+        const part = raw.trim();
+        if (!part) continue;
+        if ((current + ' ' + part).trim().length <= 220) current = (current + ' ' + part).trim();
+        else {
+          if (current) out.push(current);
+          if (part.length <= 220) current = part;
+          else {
+            const words = part.split(/\s+/); let temp = '';
+            for (const word of words) {
+              if ((temp + ' ' + word).trim().length > 200) { if (temp) out.push(temp); temp = word; }
+              else temp = (temp + ' ' + word).trim();
+            }
+            current = temp;
+          }
+        }
+      }
+      if (current) out.push(current);
+      return out;
+    }
+
+    function selectedVoice() {
+      const idx = Number(voiceEl.value);
+      return Number.isInteger(idx) && voices[idx] ? voices[idx] : null;
+    }
+
+    function speakChunk(token) {
+      if (!synth || token !== sessionToken || !speaking || paused) return;
+      if (chunkIndex >= chunks.length) {
+        speaking = false; paused = false; updateProgress(chunks.length); playBtn.textContent = '▶ Play again'; pauseBtn.textContent = '⏸'; setStatus('Finished.', 'good'); return;
+      }
+      const u = new SpeechSynthesisUtterance(chunks[chunkIndex]);
+      const v = selectedVoice(); if (v) u.voice = v;
+      u.rate = Number(speedEl.value) || 1;
+      u.onend = () => {
+        if (token !== sessionToken || !speaking) return;
+        chunkIndex += 1; updateProgress(chunkIndex);
+        setTimeout(() => speakChunk(token), 40);
+      };
+      u.onerror = (e) => {
+        if (token !== sessionToken || ['canceled','interrupted'].includes(e.error)) return;
+        speaking = false; paused = false; setStatus('Playback stopped: ' + (e.error || 'speech error') + '.', 'bad');
+      };
+      synth.speak(u);
+    }
+
+    function startFrom(index = 0) {
+      if (!synth) { setStatus('Text-to-speech is not available in this browser.', 'bad'); return; }
+      const input = textEl.value.trim();
+      if (!input) { setStatus('Paste or type something first.', 'bad'); textEl.focus(); return; }
+      synth.cancel();
+      sessionToken += 1;
+      chunks = splitText(input);
+      chunkIndex = Math.min(index, Math.max(0, chunks.length - 1));
+      speaking = true; paused = false;
+      playBtn.textContent = '▶ Playing'; pauseBtn.textContent = '⏸';
+      setStatus('Reading aloud…', 'good'); updateProgress(chunkIndex);
+      speakChunk(sessionToken);
+    }
+
+    playBtn.addEventListener('click', () => {
+      if (speaking && paused) { synth.resume(); paused = false; pauseBtn.textContent = '⏸'; setStatus('Reading aloud…','good'); return; }
+      if (speaking) return;
+      startFrom(chunkIndex >= chunks.length ? 0 : chunkIndex);
+    });
+    pauseBtn.addEventListener('click', () => {
+      if (!speaking) return;
+      if (paused) { synth.resume(); paused = false; pauseBtn.textContent = '⏸'; setStatus('Reading aloud…','good'); }
+      else { synth.pause(); paused = true; pauseBtn.textContent = '▶'; setStatus('Paused.'); }
+    });
+    stopBtn.addEventListener('click', () => {
+      if (synth) synth.cancel(); sessionToken += 1; speaking = false; paused = false; chunkIndex = 0; chunks = splitText(textEl.value); playBtn.textContent = '▶ Play'; pauseBtn.textContent = '⏸'; updateProgress(0); setStatus('Stopped.');
+    });
+    restartBtn.addEventListener('click', () => startFrom(0));
+
+    speedEl.addEventListener('input', () => { speedValueEl.textContent = Number(speedEl.value).toFixed(1) + '×'; localStorage.setItem('rcReaderSpeed', speedEl.value); });
+    voiceEl.addEventListener('change', () => localStorage.setItem('rcReaderVoiceName', selectedVoice()?.name || ''));
+    textEl.addEventListener('input', () => { if (!speaking) { chunks = splitText(textEl.value); chunkIndex = 0; updateProgress(0); } localStorage.setItem('rcReaderText', textEl.value.slice(0,200000)); });
+
+    $('pasteBtn').addEventListener('click', async () => {
+      try { const t = await navigator.clipboard.readText(); if (!t) throw new Error(); textEl.value = t; textEl.dispatchEvent(new Event('input')); setStatus('Pasted. Press Play.', 'good'); }
+      catch { setStatus('Clipboard access was blocked. Tap the text box and paste normally.', 'bad'); textEl.focus(); }
+    });
+    $('sampleBtn').addEventListener('click', () => { textEl.value = 'This is RC Reader. Paste any message, email, article, instructions, or notes here and press Play. The goal is simple: let your ears handle the reading so your eyes can stay on the work in front of you.'; textEl.dispatchEvent(new Event('input')); setStatus('Sample loaded. Press Play.', 'good'); });
+    $('clearBtn').addEventListener('click', () => { if (synth) synth.cancel(); sessionToken++; speaking=false; paused=false; textEl.value=''; chunks=[]; chunkIndex=0; localStorage.removeItem('rcReaderText'); updateProgress(0); setStatus('Cleared.'); textEl.focus(); });
+
+    async function readFile(file) {
+      if (!file) return;
+      if (file.size > 10 * 1024 * 1024) throw new Error('File is larger than 10 MB.');
+      const name = file.name.toLowerCase();
+      if (name.endsWith('.txt') || name.endsWith('.md')) return await file.text();
+      if (name.endsWith('.csv')) {
+        const raw = await file.text();
+        if (!window.Papa) return raw;
+        const parsed = Papa.parse(raw, {skipEmptyLines:true});
+        if (parsed.errors && parsed.errors.length && !parsed.data.length) throw new Error('Could not parse this CSV.');
+        return parsed.data.map(row => row.map(cell => String(cell ?? '').trim()).filter(Boolean).join('. ')).filter(Boolean).join('.\n');
+      }
+      if (name.endsWith('.pdf')) {
+        if (!window.pdfjsLib) throw new Error('PDF reader failed to load.');
+        const data = new Uint8Array(await file.arrayBuffer());
+        const pdf = await pdfjsLib.getDocument({data}).promise;
+        const pages = [];
+        for (let i=1; i<=pdf.numPages; i++) {
+          const page = await pdf.getPage(i); const tc = await page.getTextContent();
+          const pageText = tc.items.map(x => x.str).join(' ').replace(/\s+/g,' ').trim();
+          if (pageText) pages.push(pageText);
+        }
+        const all = pages.join('\n\n').trim();
+        if (all.length < 10) throw new Error('No selectable text was found. This looks like a scanned/image-only PDF and needs OCR.');
+        return all;
+      }
+      if (name.endsWith('.docx')) {
+        if (!window.mammoth) throw new Error('DOCX reader failed to load.');
+        const result = await mammoth.extractRawText({arrayBuffer: await file.arrayBuffer()});
+        const all = (result.value || '').trim(); if (!all) throw new Error('No readable text was found in this DOCX.'); return all;
+      }
+      throw new Error('Unsupported file type. Use TXT, MD, CSV, PDF, or DOCX.');
+    }
+
+    fileEl.addEventListener('change', async () => {
+      const file = fileEl.files && fileEl.files[0]; if (!file) return;
+      if (synth) synth.cancel(); sessionToken++; speaking=false; paused=false;
+      setStatus('Opening ' + file.name + '…');
+      try {
+        const extracted = await readFile(file);
+        textEl.value = extracted.slice(0,200000); textEl.dispatchEvent(new Event('input'));
+        setStatus(`Loaded ${file.name}. Press Play.`, 'good');
+      } catch (e) { setStatus(e && e.message ? e.message : 'Could not read that file.', 'bad'); }
+      finally { fileEl.value = ''; }
+    });
+
+    if (synth) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+    else setStatus('This browser does not provide text-to-speech.', 'bad');
+    const savedSpeed = localStorage.getItem('rcReaderSpeed'); if (savedSpeed) { speedEl.value = savedSpeed; speedValueEl.textContent = Number(savedSpeed).toFixed(1) + '×'; }
+    const savedText = localStorage.getItem('rcReaderText'); if (savedText) { textEl.value = savedText; chunks = splitText(savedText); }
+    setTimeout(() => { const savedName = localStorage.getItem('rcReaderVoiceName'); if (savedName) { const v = voices.findIndex(x => x.name === savedName); if (v >= 0) voiceEl.value = String(v); } }, 500);
+    updateProgress(0);
+  })();
+  </script>
+</body>
+</html>
