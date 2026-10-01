@@ -3,7 +3,7 @@
 **Domain:** rcemporium.ca  
 **Repository:** clark-rcemporium/rcemporium-ca  
 **Hosting:** Vercel  
-**Status:** DEPLOYED; custom `.ca` domain still needs to be attached to the Vercel project  
+**Status:** Deployed to Vercel; custom `.ca` domains are registered with Vercel but await GoDaddy DNS verification.
 **Purpose:** Official corporate headquarters website for RC Emporium Technologies Inc.
 
 ## Current Operating Message
@@ -43,9 +43,13 @@ The Vercel deployment is healthy, but `rcemporium.ca` and `www.rcemporium.ca` mu
 
 ## Remaining Domain Step
 
-In Vercel, open the `rcemporium-ca` project and add:
+The `rcemporium-ca` Vercel project has the required domains registered:
 
 1. `rcemporium.ca`
 2. `www.rcemporium.ca`
 
-Then apply the DNS records Vercel requests at the domain's DNS provider and verify the domain/SSL status in Vercel.
+Add the current Vercel verification records at the GoDaddy DNS provider, replace legacy GoDaddy forwarding to the unassigned `rcemporium.manus.space` hostname with Vercel's required A/CNAME records, and then verify the domain/SSL status in Vercel. Until that is complete, the canonical `rcemporium.ca` domain is not an operational public endpoint.
+
+## Ecosystem Route
+
+`/ecosystem` is a reversible Vercel redirect to the existing `/#portfolio` section. This preserves a single parent-site information architecture while giving integrated RC Emporium products a valid ecosystem return path once the custom domain is verified.
