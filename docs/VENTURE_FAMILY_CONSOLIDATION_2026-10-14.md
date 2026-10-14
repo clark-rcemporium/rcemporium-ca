@@ -66,3 +66,13 @@ Eight information sections/pages: Home, Our Ventures, SSUU Innovation, Products 
 
 ## Ordered in-place migration
 CIL source check → identify original owner/project → backup/export code and data → feature comparison → choose one canonical surviving app → narrow paid outcome → implement and test delivery automation → stage deployment → verification → approved cutover, redirect and archive with rollback.
+
+## CIL precedence and revision reconciliation (2026-10-14)
+- AUTHORITATIVE: current Drive workbook ID `1V6vbU4ToEAS8b5tdISUBBFXDpoSVT29S`, displayed filename `RC_Emporium_Master_CIL_v0_3_60_CANONICAL_2026-10-13.xlsx`; trust the stable identity and current /arcee status, not older attachment labels or copied version strings.
+- HISTORICAL ONLY: uploaded `RC_Emporium_Master_CIL_v0_3_52_CANONICAL_2026-10-08(2).xlsx`, for preserving older known sites, features and provenance. Do not overwrite or duplicate the current master.
+- Current registry `RCE-005`: SSUU stands for **Symbiotic Synergy Utility Utilization**, not the provisional Sustainable Technology Research name.
+- `RCE-014` VEPKAR = HOLD / MEASUREMENT-FIRST; `RCE-040` HydroFlowGen = concept; `RCE-045` TSPG = capital-heavy/parked for potential partnership or licensing. Do not claim proven power or savings.
+- `RCE-243` Contractor Invoice AI = PARKED / MANUAL VALIDATION; `RCE-173` PRESEND = PARKED / CONCIERGE-FIRST; `RCE-187` Branded Venue Loop = PARKED / VALIDATION-READY; none is admitted for immediate unverified checkout.
+- `RCE-104` GrantForge is marked MERGE / ABSORB INTO FUND, not a separate launch. `RCE-198` RCBID paid scan delivery, `RCE-212` opportunity pipeline, `RCE-213` trust labels inform the proposed customer journey, without claiming deployed automation.
+- The corporate directory shows **12 curated public portfolio entries**; these are **not** the same set of entities as the `WEB-FAM-001`–`WEB-FAM-012` historical website-family clusters, which contain duplicated, internal, personal and infrastructure items.
+- No live database, Stripe price or link, DNS, production deployment, Manus ownership, source archive or customer record was changed through the CIL review. Exact-head protected preview remains blocked by Vercel HTTP402 deployment quota.
