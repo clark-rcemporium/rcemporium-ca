@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RC Emporium Technologies Inc. builds RCBID + FUND for Canadian procurement and funding intelligence, with future supplier discovery and contractor services planned inside one business platform.">
+    <meta name="description" content="RC Emporium Technologies Inc. is a Canadian AI, software and clean-tech company. Explore RCBID + FUND, RC Reader and our portfolio of emerging business tools, research and engineering ventures.">
     <meta name="theme-color" content="#2C3957">
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="https://rcemporium.ca/">
@@ -244,6 +244,22 @@
             .actions .btn { width: 100%; }
             .strategy-strip .container { font-size: .9rem; }
         }
+        /* Portfolio consolidation: no new application or shared customer state. */
+        .ecosystem-section { background: var(--paper); }
+        .ecosystem-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+        .ecosystem-card { display:flex; flex-direction:column; padding:1.4rem; border:1px solid var(--line); border-radius:14px; background:var(--white); min-width:0; }
+        .ecosystem-status { color:#705d1f; text-transform:uppercase; font-size:.7rem; font-weight:900; letter-spacing:.075em; margin-bottom:.65rem; }
+        .ecosystem-card h3 { color:var(--navy-dark); font-size:1.2rem; line-height:1.2; margin-bottom:.6rem; }
+        .ecosystem-card p { color:var(--muted); font-size:.93rem; flex:1; }
+        .ecosystem-card a { color:var(--navy); font-weight:800; margin-top:1rem; text-underline-offset:3px; }
+        .ecosystem-footnote { color:var(--muted); max-width:900px; font-size:.9rem; margin-top:1.7rem; }
+        .ecosystem-footnote a { color:var(--navy); }
+        .one-time-offer { display:flex; gap:1.5rem; align-items:center; justify-content:space-between; margin-top:1.2rem; background:#fff; border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:12px; padding:1.2rem; }
+        .one-time-offer strong { color:var(--navy-dark); }
+        .one-time-offer p { color:var(--muted); font-size:.91rem; margin-top:.25rem; }
+        .one-time-offer a { font-weight:800; color:var(--navy); white-space:nowrap; }
+        @media (max-width:820px) { .ecosystem-grid {grid-template-columns:repeat(2,minmax(0,1fr));} }
+        @media (max-width:570px) { .ecosystem-grid {grid-template-columns:1fr;} .one-time-offer {flex-direction:column;align-items:flex-start;} .one-time-offer a {white-space:normal;} }
     </style>
 </head>
 <body>
@@ -253,6 +269,7 @@
             <ul>
                 <li><a href="#company">Company</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#ecosystem">Ecosystem</a></li>
                 <li><a class="nav-cta" href="/rcbid/">$47 Found Money Scan</a></li>
             </ul>
         </div>
@@ -308,12 +325,13 @@
                         <a href="/rcbid/">Review PURSUE →</a>
                     </article>
                     <article class="tier">
-                        <div class="tier-price">$297 <small>CAD/month</small></div>
+                        <div class="tier-price" style="font-size:1.35rem">Not yet offered</div>
                         <h3>ACTION <span style="font-size:.75rem;color:var(--muted)">— Coming soon</span></h3>
                         <p>Future advanced execution tier. No checkout or entitlement is currently available for this tier.</p>
                         <a href="/rcbid/">View roadmap →</a>
                     </article>
                 </div>
+                <div class="one-time-offer"><div><strong>One-time option · $47 CAD Found Money Scan</strong><p>Request a source-linked review of potential funding, procurement and cost-recovery opportunities. This is a separate service from FIND/PURSUE subscriptions; payment and delivery must be confirmed before accepting an order.</p></div><a href="/rcbid/">Review the scan →</a></div>
             </div>
         </section>
 
@@ -378,6 +396,81 @@
                         <a href="mailto:info@rcemporium.ca?subject=RC%20Emporium%20Clean-Tech%20Inquiry">Contact the company →</a>
                     </article>
                 </div>
+            </div>
+        </section>
+
+        <section class="ecosystem-section" id="ecosystem" aria-labelledby="ecosystem-title">
+            <div class="container">
+                <div class="section-head">
+                    <p class="section-kicker">Consolidated venture portfolio</p>
+                    <h2 id="ecosystem-title">One corporate home. Distinct products. Clear readiness.</h2>
+                    <p>This directory consolidates the public story from RC Emporium's historical website families. It does not merge app accounts, private databases or payment systems. Entries are labelled by evidence and readiness, not by unverified marketing claims.</p>
+                </div>
+                <div class="ecosystem-grid">
+                    <article class="ecosystem-card">
+                        <span class="ecosystem-status">Current revenue priority</span>
+                        <h3>RCBID + FUND</h3>
+                        <p>One Canadian business opportunity platform: funding, contracts, bids and evidence-linked decision support. FIND/PURSUE subscriptions are release-gated.</p>
+                        <a href="/rcbid/">Explore RCBID + FUND →</a>
+                    </article>
+                    <article class="ecosystem-card">
+                        <span class="ecosystem-status">Available utility</span>
+                        <h3>RC Reader</h3>
+                        <p>An on-site text-to-speech reader with local document upload. Actual device/browser speech support varies.</p>
+                        <a href="/reader/">Open RC Reader →</a>
+                    </article>
+                    <article class="ecosystem-card">
+                        <span class="ecosystem-status">Prototype · not a verified marketplace</span>
+                        <h3>NoBrainer Deals</h3>
+                        <p>Auction and purchasing-intelligence concept. Existing Manus prototypes are preserved; deal availability and commercial operation are not verified.</p>
+                    </article>
+                    <article class="ecosystem-card">
+                        <span class="ecosystem-status">Prototype · billing unverified</span>
+                        <h3>Contractor Invoice AI</h3>
+                        <p>Contractor-focused invoice preparation and workflow concept. Existing Manus pages are evidence, not proof of a production invoicing service.</p>
+                    </article>
+                    <article class="ecosystem-card">
+                        <span class="ecosystem-status">Internal operating system</span>
+                        <h3>ARCEE + CIL</h3>
+                        <p>Founder-facing venture execution, evidence, reusable IP blocks and operating governance. Internal project; no public administrative access is offered.</p>
+                    </article>
+                    <article class="ecosystem-card">
+                        <span class="ecosystem-status">Internal capability</span>
+                        <h3>RC Marketing & Sales Tools</h3>
+                        <p>Reusable campaigns, sales-analysis, CRM and content operations assets. Multiple historical Manus variants are consolidated as one capability family.</p>
+                    </article>
+                    <article class="ecosystem-card">
+                        <span class="ecosystem-status">Engineering validation</span>
+                        <h3>VEPKAR</h3>
+                        <p>Indoor airflow energy-recovery research. Performance, net energy savings and retrofit suitability require measured pilot evidence.</p>
+                    </article>
+                    <article class="ecosystem-card">
+                        <span class="ecosystem-status">Incubated venture</span>
+                        <h3>PRESEND</h3>
+                        <p>Business communication and pre-send workflow concept, held for staged validation after the primary revenue product.</p>
+                    </article>
+                    <article class="ecosystem-card">
+                        <span class="ecosystem-status">Prototype</span>
+                        <h3>CoinLens</h3>
+                        <p>AI-assisted Canadian coin triage concept. Valuations and variety identification require reliable images and independent numismatic checks.</p>
+                    </article>
+                    <article class="ecosystem-card">
+                        <span class="ecosystem-status">Manual pilot candidates</span>
+                        <h3>Branded Venue Loop + ClipForge</h3>
+                        <p>Venue video loops and short-form content services. Pilot-first concepts rather than independently verified autonomous subscriptions.</p>
+                    </article>
+                    <article class="ecosystem-card">
+                        <span class="ecosystem-status">Research / IP</span>
+                        <h3>InventorOS + Venture IP</h3>
+                        <p>Invention disclosure, asset tracking and commercialization concepts. Claims of novelty or patent rights require professional review.</p>
+                    </article>
+                    <article class="ecosystem-card">
+                        <span class="ecosystem-status">Planned extension</span>
+                        <h3>Business Network + Supplier Discovery</h3>
+                        <p>Potential matching and procurement support aligned with RCBID + FUND. No live verified bookings, matching or marketplace transactions.</p>
+                    </article>
+                </div>
+                <p class="ecosystem-footnote">Legacy Manus variants are maintained as source/evidence pending feature-by-feature extraction and authorized migration. No historical trial, product price or performance metric is adopted here without current verification. Product enquiries: <a href="mailto:info@rcemporium.ca">info@rcemporium.ca</a>.</p>
             </div>
         </section>
 
