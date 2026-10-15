@@ -1,0 +1,3 @@
+# Private operational documentation belongs in Git, not the public static website.
+docs/
+README.md
