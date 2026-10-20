@@ -15,3 +15,5 @@ jobs:
           node-version: '22'
       - name: Check corporate customer-route integrity
         run: node scripts/verify-corporate-route-truth.mjs
+      - name: Verify mobile Chromium navigation and responsive funnel (390px/320px)
+        run: node scripts/verify-corporate-mobile.mjs
