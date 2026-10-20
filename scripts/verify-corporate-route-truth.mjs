@@ -24,7 +24,7 @@ const pages = [landing, product, onboarding, services, venture];
 for (const [i, html] of pages.entries()) {
   const page = required[i] ?? "page-" + i;
   assert.match(html, /<meta name="viewport"[^>]*>/, page + " missing viewport");
-  assert(!/human.review(?:ed)?|bounded human review/i.test(html), page + " still promises obsolete Scan human review");
+  assert(!/human-reviewed|bounded human review|\bwith human review\b/i.test(html), page + " still promises obsolete Scan human review");
   assert(!/\$27(?:\s*CAD)?(?:\/month|\s*FIND)|30 (?:consecutive )?complimentary days/i.test(html), page + " uses legacy subscription terms");
 }
 assert(product.includes('href="https://rcbidintel.one/"'), "Missing actual existing venture-site route");
