@@ -1,0 +1,19 @@
+name: Corporate site contract and link verification
+on:
+  pull_request:
+  push:
+    branches: [master]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check corporate customer-route integrity
+        run: node scripts/verify-corporate-route-truth.mjs
+      - name: Verify mobile Chromium navigation and responsive funnel (390px/320px)
+        run: node scripts/verify-corporate-mobile.mjs
